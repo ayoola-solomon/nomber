@@ -1,20 +1,80 @@
+import { push } from 'react-router-redux';
+import _ from 'lodash';
+import Constants from '../constants';
+import { auth } from '../utils/firebase';
+
 const Actions = {
-  currentUser: () => {
-    // get current user
-    // dispatch to store
-  },
+  currentUser: () =>
+    (dispatch) => {
+      auth()
+      .onAuthStateChanged((user) => {
+        if (user) {
+          const currentUser = _.pick(user, 'displayName', 'email', 'photoURL', 'uid');
+          currentUser.name = currentUser.displayName;
+          delete currentUser.displayName;
 
-  signup: () => {
+          dispatch({
+            type: Constants.CURRENT_USER,
+            payload: currentUser,
+          });
+        }
+      });
+    },
 
-  },
+  signup: data =>
+    (dispatch) => {
+      dispatch({ type: Constants.USER_SIGN_UP_REQUEST });
+      auth()
+      .createUserWithEmailAndPassword(data.email, data.password)
+      .then((user) => {
+        if (user !== null) {
+          user.updateProfile({
+            displayName: data.name,
+          }).then((response) => {
+            if (response !== null) {
+              localStorage.setItem('token', user.rd);
+              dispatch(Actions.currentUser());
+              dispatch(push('/'));
+            }
+          }, (error) => {
+            dispatch({
+              type: Constants.USER_SIGN_UP_FAILURE,
+              payload: error.message,
+            });
+          });
+        }
+      }, (error) => {
+        dispatch({
+          type: Constants.USER_SIGN_UP_FAILURE,
+          payload: error.message,
+        });
+      });
+    },
 
-  signin: () => {
-
-  },
+  signin: data =>
+    (dispatch) => {
+      dispatch({ type: Constants.USER_SIGN_IN_REQUEST });
+      auth()
+      .signInWithEmailAndPassword(data.email, data.password)
+      .then((user) => {
+        if (user !== null) {
+          localStorage.setItem('token', user.rd);
+          dispatch(Actions.currentUser());
+          dispatch(push('/'));
+        }
+      }, (error) => {
+        dispatch({
+          type: Constants.USER_SIGN_IN_FAILURE,
+          payload: error.message,
+        });
+      });
+    },
 
   signupWithGoogle: () => {
 
   },
+
+  resetSession: () => ({ type: Constants.SESSION_RESET }),
 };
 
 export default Actions;

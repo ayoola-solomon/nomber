@@ -10,20 +10,22 @@ import './signin.css';
 
 const bem = makeBem('signin');
 
-const View = ({ handleChange }) =>
+const View = ({ handleChange, handleSubmit, props: { error } }) =>
   <SessionWrapper>
     <FormWrapper title="Sign In">
-      <form onSubmit={e => (e.preventDefault())}>
+      <form onSubmit={handleSubmit}>
 
-        <TextField name="email" type="email" label="Email" hint="e.g., johndoe@nomber.com" onChange={handleChange} />
-        <TextField name="Password" type="password" label="Password" hint="e.g., **********" help="At least 8 characters long" onChange={handleChange} />
+        <p style={{ color: '#D50000' }}>{error}</p>
+
+        <TextField name="email" type="email" label="Email" hint="e.g., johndoe@nomber.com" onChange={handleChange('email')} />
+        <TextField name="Password" type="password" label="Password" hint="e.g., **********" help="At least 8 characters long" onChange={handleChange('password')} />
 
         <FormAction>
-          <RaisedButton secondary label="Sign In" />
+          <RaisedButton secondary label="Sign In" onClick={handleSubmit} />
         </FormAction>
 
       </form>
-
+      
 
     </FormWrapper>
 
@@ -35,6 +37,10 @@ const View = ({ handleChange }) =>
 
 View.propTypes = {
   handleChange: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  props: PropTypes.shape({
+    error: PropTypes.string,
+  }),
 };
 
 export default View;

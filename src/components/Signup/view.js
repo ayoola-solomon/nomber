@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import SessionWrapper from '../../components/Wrapper/Session';
 import FormWrapper from '../../components/Wrapper/Form';
 import FormAction from '../../components/Wrapper/Form/action';
 import TextField from '../../components/Form/TextField';
 
-const View = () =>
+const View = ({ handleChange, handleSubmit, props: { error } }) =>
   <SessionWrapper>
     <FormWrapper title="Signup" backLink="/sign-in">
-      <form onSubmit={(e) => (e.preventDefault())}>
+      <form onSubmit={handleSubmit}>
 
-        <TextField name="name" type="text" label="Name" hint="e.g., John Doe" onChange={(e) => console.log(e.target.value)} />
-        <TextField name="email" type="email" label="Email" hint="e.g., johndoe@nomber.com" onChange={(e) => console.log(e.target.value)} />
-        <TextField name="Password" type="password" label="Password" hint="e.g., **********" help="At least 8 characters long" onChange={(e) => console.log(e.target.value)} />
+        <p style={{ color: '#D50000' }}>{error}</p>
+
+        <TextField name="name" type="text" label="Name" hint="e.g., John Doe" onChange={handleChange('name')} />
+        <TextField name="email" type="email" label="Email" hint="e.g., johndoe@nomber.com" onChange={handleChange('email')} />
+        <TextField name="password" type="password" label="Password" hint="e.g., **********" help="At least 8 characters long" onChange={handleChange('password')} />
 
         <FormAction>
-          <RaisedButton secondary label="Sign Up" />
+          <RaisedButton secondary label="Sign Up" onClick={handleSubmit} />
         </FormAction>
 
       </form>
     </FormWrapper>
   </SessionWrapper>;
+
+View.propTypes = {
+  handleChange: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  props: PropTypes.shape({
+    error: PropTypes.string,
+  }),
+};
 
 export default View;

@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
@@ -11,8 +11,9 @@ const loggerMiddleware = createLogger({
 
 export default function configureStore(browserHistory) {
   const reduxRouterMiddleware = routerMiddleware(browserHistory);
-  const createStoreWithMiddleware =
-    applyMiddleware(reduxRouterMiddleware, thunkMiddleware, loggerMiddleware)(createStore);
-
-  return createStoreWithMiddleware(reducers);
+  const enhancers = [
+    applyMiddleware(thunkMiddleware, reduxRouterMiddleware, loggerMiddleware),
+  ];
+  const store = createStore(reducers, compose(...enhancers));
+  return store;
 }

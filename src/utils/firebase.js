@@ -10,11 +10,10 @@ const config = {
 
 firebase.initializeApp(config);
 
-export ref = (node) => {
-  const ref = firebase.database().ref();
-  return ref.child(node);
+export function ref(node) {
+  return firebase.database().ref().child(node);
 }
 
-export auth = () => {
+export function auth() {
   return firebase.auth();
 }
