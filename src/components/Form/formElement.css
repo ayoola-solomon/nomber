@@ -1,0 +1,61 @@
+.formElement {
+  font-weight: 400 !important;
+  margin-bottom: 24px !important;
+  width: 100%;
+}
+
+.formElement__label {
+  font-size: 14px;
+  padding-bottom: 8px;
+}
+
+.formElement__inputWrapper {
+  position: relative;
+}
+
+.formElement__input,
+.formElement__textarea,
+.formElement__phone {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 13px 15px 9px 16px;
+  border: 1px solid #ccc;
+}
+
+.formElement__input:focus,
+.formElement__textarea:focus,
+.formElement__phone:focus {
+  padding: 12px 14px 8px 15px;
+  border: 2px solid #999;
+}
+
+.formElement__input--error,
+.formElement__textarea--error,
+.formElement__phone--error {
+  border-color: #D50000;
+}
+
+.formElement__input--error:focus,
+.formElement__textarea--error:focus,
+.formElement__phone--error:focus {
+  padding: 12px 14px 8px 15px;
+  border: 2px solid #D50000;
+}
+
+.formElement__message {
+  font-size: 12px;
+  padding-top: 8px;
+}
+
+.formElement__message--help {
+  color: #999;
+}
+
+.formElement__message--error {
+  color: #D50000;
+}
+
+label {
+  font-weight: 400 !important;
+}

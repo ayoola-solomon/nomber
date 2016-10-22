@@ -1,0 +1,13 @@
+.signin {}
+
+.signin__bottom {
+  margin-bottom: 16px;
+}
+
+.signin__bottom p {
+  margin-top: 16px;
+}
+
+.signin__bottom a {
+  color: rgba(21, 84, 202, 0.74);
+}

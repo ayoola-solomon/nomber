@@ -1,0 +1,44 @@
+.formWrapper {
+  position: relative;
+  margin: auto;
+  width: 512px;
+  text-align: left;
+}
+
+.formWrapper__backButton {
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  left: 24px;
+  top: 24px;
+  cursor: pointer;
+}
+
+.formWrapper__title {
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.formWrapper__content {
+  width: 330px;
+  margin: 0 auto;
+}
+
+
+.formWrapper__action {
+  margin-top: 8px;
+  margin-bottom: 32px;
+  height: 36px;
+}
+
+.formWrapper__action__center {
+  flex: auto;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: -16px;
+  margin-left: -16px;
+  margin-right: -16px;
+}

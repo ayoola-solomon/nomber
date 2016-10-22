@@ -1,5 +1,3 @@
-/* @flow */
-
 import React from 'react';
 import logo from '../../static/images/logo.svg';
 import './App.css';
