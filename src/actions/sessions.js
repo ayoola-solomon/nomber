@@ -33,7 +33,6 @@ const Actions = {
           }).then((response) => {
             if (response !== null) {
               localStorage.setItem('token', user.rd);
-              dispatch(Actions.currentUser());
               dispatch(push('/'));
             }
           }, (error) => {
@@ -59,7 +58,6 @@ const Actions = {
       .then((user) => {
         if (user !== null) {
           localStorage.setItem('token', user.rd);
-          dispatch(Actions.currentUser());
           dispatch(push('/'));
         }
       }, (error) => {

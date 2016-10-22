@@ -12,7 +12,7 @@ class Logic extends Component {
   }
 
   componentWillUnmount() {
-    // this.props.resetSession();
+    this.props.resetSession();
   }
 
   handleChange = field => (e) => {
