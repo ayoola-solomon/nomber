@@ -14,6 +14,9 @@ export function ref(node) {
   return firebase.database().ref().child(node);
 }
 
-export function auth() {
+export function auth(provider) {
+  if (provider === 'Google') {
+    return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
   return firebase.auth();
 }

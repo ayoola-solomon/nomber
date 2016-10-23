@@ -10,9 +10,11 @@ import './signin.css';
 
 const bem = makeBem('signin');
 
-const View = ({ handleChange, handleSubmit, props: { error } }) =>
+const View = ({ handleChange, handleSubmit, props: { error, signupWithGoogle } }) =>
   <SessionWrapper>
+
     <FormWrapper title="Sign In">
+
       <form onSubmit={handleSubmit}>
 
         <p style={{ color: '#D50000' }}>{error}</p>
@@ -21,11 +23,17 @@ const View = ({ handleChange, handleSubmit, props: { error } }) =>
         <TextField name="Password" type="password" label="Password" hint="e.g., **********" help="At least 8 characters long" onChange={handleChange('password')} />
 
         <FormAction>
-          <RaisedButton secondary label="Sign In" onClick={handleSubmit} />
+          <RaisedButton primary label="Sign In" onClick={handleSubmit} />
+        </FormAction>
+
+        <p className={bem.el('or')}> OR </p>
+
+        <FormAction>
+          <RaisedButton secondary label="Sign in with Google" onClick={signupWithGoogle} />
         </FormAction>
 
       </form>
-      
+
 
     </FormWrapper>
 
@@ -40,6 +48,7 @@ View.propTypes = {
   handleSubmit: PropTypes.func,
   props: PropTypes.shape({
     error: PropTypes.string,
+    signupWithGoogle: PropTypes.func,
   }),
 };
 

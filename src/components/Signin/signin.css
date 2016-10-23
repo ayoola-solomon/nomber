@@ -1,5 +1,9 @@
 .signin {}
 
+.signin__or {
+  text-align: center;
+}
+
 .signin__bottom {
   margin-bottom: 16px;
 }

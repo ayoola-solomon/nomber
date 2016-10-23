@@ -37,7 +37,6 @@ class Logic extends Component {
 Logic.propTypes = {
   signup: PropTypes.func,
   resetSession: PropTypes.func,
-  error: PropTypes.string,
 };
 
 export default Logic;

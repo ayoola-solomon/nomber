@@ -9,13 +9,15 @@ const Actions = {
       auth()
       .onAuthStateChanged((user) => {
         if (user) {
-          const currentUser = _.pick(user, 'displayName', 'email', 'photoURL', 'uid');
-          currentUser.name = currentUser.displayName;
-          delete currentUser.displayName;
+          user.providerData.forEach((data) => {
+            const currentUser = _.pick(data, 'displayName', 'email', 'photoURL', 'uid');
+            currentUser.name = currentUser.displayName;
+            delete currentUser.displayName;
 
-          dispatch({
-            type: Constants.CURRENT_USER,
-            payload: currentUser,
+            dispatch({
+              type: Constants.CURRENT_USER,
+              payload: currentUser,
+            });
           });
         }
       });
@@ -68,9 +70,22 @@ const Actions = {
       });
     },
 
-  signupWithGoogle: () => {
-
-  },
+  signupWithGoogle: () =>
+    (dispatch) => {
+      auth('Google')
+      .then((response) => {
+        if (response !== null) {
+          localStorage.setItem('token', response.credential.idToken);
+          dispatch(push('/'));
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: Constants.USER_SIGN_IN_FAILURE,
+          payload: error.message,
+        });
+      });
+    },
 
   resetSession: () => ({ type: Constants.SESSION_RESET }),
 };

@@ -8,6 +8,7 @@ const mapStateToProps = ({ session }) => ({
 
 const mapDispatchToProps = dispatch => ({
   signin: data => dispatch(SessionActions.signin(data)),
+  signupWithGoogle: () => dispatch(SessionActions.signupWithGoogle()),
   resetSession: () => dispatch(SessionActions.resetSession()),
 });
 
