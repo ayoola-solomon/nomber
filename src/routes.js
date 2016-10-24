@@ -36,7 +36,9 @@ export default function configRoutes(store) {
     <Route component={MainLayout}>
       <Route path="sign-up" component={Signup} onEnter={checkAuth} />
       <Route path="sign-in" component={Signin} onEnter={checkAuth} />
-      <Route path="/" component={App} onEnter={ensureAuthenticated} />
+      <Route path="/" component={App} onEnter={ensureAuthenticated}>
+        <Route path="boards/:id" component={App} />
+      </Route>
     </Route>
   );
 }

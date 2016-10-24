@@ -1,0 +1,43 @@
+.headerBar {
+  position: fixed;
+  z-index: 5000;
+  width: 100%;
+}
+
+.headerBar__image {
+  animation: headerBar__image infinite 20s linear;
+  width: 70px;
+}
+
+@keyframes headerBar__image {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.headerBar__title {
+  font-weight: 700;
+  color: inherit;
+}
+
+.headerBar__background {
+  background-color: #FAFBFC !important;
+}
+
+.headerBar__avatar__name {
+  padding-left: 32px;
+  line-height: 55px;
+}
+
+.headerBar__avatar__image {
+  padding-left: 8px;
+  line-height: 70px;
+}
+
+.headerBar__avatar__letter {
+  padding-left: 8px;
+  line-height: 55px;
+}
+
+.headerBar__content {
+  padding-top: 65px;
+}

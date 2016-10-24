@@ -9,14 +9,19 @@ const Actions = {
       auth()
       .onAuthStateChanged((user) => {
         if (user) {
+          const currentUser = _.pick(user, 'displayName', 'uid');
           user.providerData.forEach((data) => {
-            const currentUser = _.pick(data, 'displayName', 'email', 'photoURL', 'uid');
-            currentUser.name = currentUser.displayName;
-            delete currentUser.displayName;
+            let providerData = _.pick(data, 'displayName', 'email', 'photoURL');
+            providerData = {
+              ...providerData,
+              ...currentUser,
+            };
+            providerData.name = providerData.displayName;
+            delete providerData.displayName;
 
             dispatch({
               type: Constants.CURRENT_USER,
-              payload: currentUser,
+              payload: providerData,
             });
           });
         }

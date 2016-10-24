@@ -27,13 +27,14 @@
 .formElement__textarea:focus,
 .formElement__phone:focus {
   padding: 12px 14px 8px 15px;
-  border: 2px solid #999;
+  border: 2px solid #BED1EE;
 }
 
 .formElement__input--error,
 .formElement__textarea--error,
 .formElement__phone--error {
   border-color: #D50000;
+  outline: 0;
 }
 
 .formElement__input--error:focus,

@@ -20,3 +20,7 @@ export function auth(provider) {
   }
   return firebase.auth();
 }
+
+export function boards(userId) {
+  return ref('boards').child(userId);
+}
